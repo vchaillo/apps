@@ -14,27 +14,36 @@
   <a class="skip" href="#projects">Aller aux applications</a>
   <header class="header">
     <a class="brand" href="./" aria-label="Apps, accueil"><span class="mark" aria-hidden="true">▦</span> apps<span class="brand-dot">.</span></a>
-    <nav aria-label="Liens personnels"><a href="https://vchaillo.github.io/">Portfolio</a><a href="https://github.com/vchaillo">GitHub</a></nav>
+    <nav aria-label="Liens personnels"><a href="https://vchaillo.github.io/" target="_blank" rel="noopener noreferrer">Portfolio</a><a href="https://github.com/vchaillo" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="page-title">
       <p class="eyebrow">VALENTIN CHAILLOU / COLLECTION</p>
-      <h1>Mes applications<span class="brand-dot">.</span></h1>
-      <p class="lead">Des outils pour le quotidien, des jeux pour les soirées<br class="desktop-break"> et quelques idées à explorer.</p>
+      <h1 id="page-title">Mes applications<span class="brand-dot">.</span></h1>
     </section>
-    <section id="projects" aria-labelledby="collection-title">
-      <div class="collection-heading"><h2 id="collection-title">La collection</h2><span id="count" class="count" aria-live="polite">Chargement…</span></div>
-      <div id="project-grid" class="grid" aria-busy="true"></div>
+    <section id="projects" aria-label="Applications">
+      <div class="catalog-toolbar"><div id="category-tabs" class="tabs" role="tablist" aria-label="Catégories"></div><button id="manage-categories" class="manage" type="button" disabled>Gérer les catégories</button></div>
+      <p id="count" class="result-count" aria-live="polite">Chargement…</p>
+      <div id="project-grid" class="grid" role="tabpanel" aria-busy="true"></div>
       <p id="error" class="error" role="alert" hidden>Le catalogue n’a pas pu être chargé. <button id="retry" type="button">Réessayer</button></p>
       <noscript><p>Active JavaScript pour afficher le catalogue, ou consulte <a href="projects.json">la liste des projets</a>.</p></noscript>
     </section>
   </main>
-  <footer><span>Fait par Valentin Chaillou</span><a href="https://github.com/vchaillo/apps">Le code de cette collection</a></footer>
+  <dialog id="category-dialog" aria-labelledby="category-dialog-title">
+    <form id="category-form">
+      <div class="modal-heading"><h2 id="category-dialog-title">Catégories des applications</h2><button id="close-dialog" class="close" type="button" aria-label="Fermer">×</button></div>
+      <p class="modal-hint">Ces changements sont enregistrés dans ce navigateur.</p>
+      <div class="new-category"><label for="new-category-name">Nouvelle catégorie</label><div><input id="new-category-name" maxlength="60" placeholder="Nom de la catégorie"><button id="add-category" type="button">Ajouter</button></div></div>
+      <div id="category-rows"></div>
+      <p id="category-message" role="status" aria-live="polite"></p>
+      <div class="modal-actions"><button id="cancel-dialog" type="button">Annuler</button><button class="save" type="submit">Enregistrer</button></div>
+    </form>
+  </dialog>
   <template id="project-template">
     <article class="card">
       <div class="card-top"><span class="icon" aria-hidden="true"></span><span class="category"></span></div>
-      <div class="card-content"><div class="title-row"><h3></h3><span class="status"></span></div><p class="description"></p><p class="note"></p></div>
-      <div class="card-bottom"><a class="open">Ouvrir</a><a class="source">Code source</a></div>
+      <div class="card-content"><div class="title-row"><h3></h3><span class="status"></span></div><p class="description"></p></div>
+      <div class="card-bottom"><a class="open" target="_blank" rel="noopener noreferrer">Ouvrir</a><a class="source">Code source</a></div>
     </article>
   </template>
 </body>
