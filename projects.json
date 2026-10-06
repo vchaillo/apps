@@ -1,0 +1,70 @@
+[
+  {
+    "id": "year-tracker",
+    "name": "Year Tracker",
+    "icon": "📅",
+    "category": "Organisation",
+    "description": "Retrouver son année en un coup d’œil et suivre ses activités, son sport et ses habitudes au fil des jours.",
+    "note": "Données enregistrées dans ce navigateur.",
+    "url": "https://vchaillo.github.io/year-tracker/",
+    "repository": "https://github.com/vchaillo/year-tracker"
+  },
+  {
+    "id": "classroom-map",
+    "name": "Classroom Map",
+    "icon": "🧑‍🏫",
+    "category": "Éducation",
+    "description": "Préparer un plan de classe, placer les élèves et passer d’une classe de lycée à une autre.",
+    "note": "Plans enregistrés dans ce navigateur.",
+    "url": "https://vchaillo.github.io/classroom-map/",
+    "repository": "https://github.com/vchaillo/classroom-map"
+  },
+  {
+    "id": "mimes",
+    "name": "MimXpressions",
+    "icon": "🎭",
+    "category": "Jeux",
+    "description": "Faire deviner des expressions en les mimant. Jouer en mode libre ou lancer une partie avec plusieurs joueurs.",
+    "url": "https://vchaillo.github.io/mimes/",
+    "repository": "https://github.com/vchaillo/mimes"
+  },
+  {
+    "id": "life-calendar",
+    "name": "Life Calendar",
+    "icon": "⏳",
+    "category": "Visualisation",
+    "status": "Prototype",
+    "description": "Visualiser une vie sous forme de semaines, pour prendre du recul sur le temps et les grandes périodes.",
+    "url": "https://vchaillo.github.io/life-calendar/",
+    "repository": "https://github.com/vchaillo/life-calendar"
+  },
+  {
+    "id": "timelines",
+    "name": "Timelines",
+    "icon": "🗓️",
+    "category": "Visualisation",
+    "status": "Prototype",
+    "description": "Explorer des événements sur une frise chronologique et les afficher selon leurs étiquettes.",
+    "url": "https://vchaillo.github.io/timelines/",
+    "repository": "https://github.com/vchaillo/timelines"
+  },
+  {
+    "id": "portfolio",
+    "name": "Portfolio",
+    "icon": "👨‍💻",
+    "category": "Parcours",
+    "description": "Mon parcours de développeur, mes expériences et les projets sur lesquels j’ai travaillé.",
+    "url": "https://vchaillo.github.io/",
+    "repository": "https://github.com/vchaillo/vchaillo.github.io"
+  },
+  {
+    "id": "previous-portfolio",
+    "name": "Portfolio précédent",
+    "icon": "📂",
+    "category": "Parcours",
+    "status": "Ancienne version",
+    "description": "La version précédente de mon portfolio, conservée pour retrouver les anciens contenus et leur présentation.",
+    "url": "https://vchaillo.github.io/vchaillo/",
+    "repository": "https://github.com/vchaillo/vchaillo"
+  }
+]

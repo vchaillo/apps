@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Les applications et projets web de Valentin Chaillou : organisation, éducation, jeux et expérimentations.">
+  <meta name="theme-color" content="#11151d">
+  <title>Apps — Valentin Chaillou</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#projects">Aller aux applications</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="Apps, accueil"><span class="mark" aria-hidden="true">▦</span> apps<span class="brand-dot">.</span></a>
+    <nav aria-label="Liens personnels"><a href="https://vchaillo.github.io/">Portfolio</a><a href="https://github.com/vchaillo">GitHub</a></nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">VALENTIN CHAILLOU / COLLECTION</p>
+      <h1>Mes applications<span class="brand-dot">.</span></h1>
+      <p class="lead">Des outils pour le quotidien, des jeux pour les soirées<br class="desktop-break"> et quelques idées à explorer.</p>
+    </section>
+    <section id="projects" aria-labelledby="collection-title">
+      <div class="collection-heading"><h2 id="collection-title">La collection</h2><span id="count" class="count" aria-live="polite">Chargement…</span></div>
+      <div id="project-grid" class="grid" aria-busy="true"></div>
+      <p id="error" class="error" role="alert" hidden>Le catalogue n’a pas pu être chargé. <button id="retry" type="button">Réessayer</button></p>
+      <noscript><p>Active JavaScript pour afficher le catalogue, ou consulte <a href="projects.json">la liste des projets</a>.</p></noscript>
+    </section>
+  </main>
+  <footer><span>Fait par Valentin Chaillou</span><a href="https://github.com/vchaillo/apps">Le code de cette collection</a></footer>
+  <template id="project-template">
+    <article class="card">
+      <div class="card-top"><span class="icon" aria-hidden="true"></span><span class="category"></span></div>
+      <div class="card-content"><div class="title-row"><h3></h3><span class="status"></span></div><p class="description"></p><p class="note"></p></div>
+      <div class="card-bottom"><a class="open">Ouvrir</a><a class="source">Code source</a></div>
+    </article>
+  </template>
+</body>
+</html>
