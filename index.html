@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Les applications et projets web de Valentin Chaillou : organisation, éducation, jeux et expérimentations.">
   <meta name="theme-color" content="#11151d">
-  <title>Apps — Valentin Chaillou</title>
+  <title>GitHub Apps — Valentin Chaillou</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -13,12 +13,12 @@
 <body>
   <a class="skip" href="#projects">Aller aux applications</a>
   <header class="header">
-    <a class="brand" href="./" aria-label="Apps, accueil"><span class="mark" aria-hidden="true">▦</span> apps<span class="brand-dot">.</span></a>
+    <a class="brand" href="./" aria-label="GitHub Apps, accueil"><span class="mark" aria-hidden="true">▦</span> github apps<span class="brand-dot">.</span></a>
     <nav aria-label="Liens personnels"><a href="https://vchaillo.github.io/" target="_blank" rel="noopener noreferrer">Portfolio</a><a href="https://github.com/vchaillo" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow">VALENTIN CHAILLOU / COLLECTION</p>
+      <p class="eyebrow">VALENTIN CHAILLOU</p>
       <h1 id="page-title">Mes applications<span class="brand-dot">.</span></h1>
     </section>
     <section id="projects" aria-label="Applications">
@@ -32,18 +32,31 @@
   <dialog id="category-dialog" aria-labelledby="category-dialog-title">
     <form id="category-form">
       <div class="modal-heading"><h2 id="category-dialog-title">Catégories des applications</h2><button id="close-dialog" class="close" type="button" aria-label="Fermer">×</button></div>
-      <p class="modal-hint">Ces changements sont enregistrés dans ce navigateur.</p>
       <div class="new-category"><label for="new-category-name">Nouvelle catégorie</label><div><input id="new-category-name" maxlength="60" placeholder="Nom de la catégorie"><button id="add-category" type="button">Ajouter</button></div></div>
       <div id="category-rows"></div>
       <p id="category-message" role="status" aria-live="polite"></p>
       <div class="modal-actions"><button id="cancel-dialog" type="button">Annuler</button><button class="save" type="submit">Enregistrer</button></div>
     </form>
   </dialog>
+  <dialog id="project-dialog" aria-labelledby="project-title">
+    <form id="project-form">
+      <div class="modal-heading"><div class="project-heading"><span id="project-icon" class="icon" aria-hidden="true"></span><h2 id="project-title"></h2></div><button id="project-close" class="close" type="button" aria-label="Fermer">×</button></div>
+      <p id="project-summary"></p>
+      <img id="project-screenshot" class="project-screenshot" hidden alt="">
+      <section class="detail-section"><h3>Technologies</h3><ul id="project-technologies" class="technology-list"></ul></section>
+      <fieldset class="detail-section"><legend>Catégories</legend><div id="project-categories"></div></fieldset>
+      <div class="new-category"><label for="project-new-category">Nouvelle catégorie</label><div><input id="project-new-category" maxlength="60" placeholder="Nom de la catégorie"><button id="project-add-category" type="button">Ajouter</button></div></div>
+      <p id="project-message" role="status" aria-live="polite"></p>
+      <div class="project-links"><a id="project-open" class="open" target="_blank" rel="noopener noreferrer">Ouvrir l’application</a><a id="project-source" class="source" target="_blank" rel="noopener noreferrer">Code source</a></div>
+      <div class="modal-actions"><button id="project-cancel" type="button">Annuler</button><button class="save" type="submit">Enregistrer les catégories</button></div>
+    </form>
+  </dialog>
   <template id="project-template">
     <article class="card">
+      <button class="details-trigger" type="button" aria-haspopup="dialog"></button>
       <div class="card-top"><span class="icon" aria-hidden="true"></span><span class="category"></span></div>
       <div class="card-content"><div class="title-row"><h3></h3><span class="status"></span></div><p class="description"></p></div>
-      <div class="card-bottom"><a class="open" target="_blank" rel="noopener noreferrer">Ouvrir</a><a class="source">Code source</a></div>
+      <div class="card-bottom"><a class="open" target="_blank" rel="noopener noreferrer">Ouvrir</a><a class="source" target="_blank" rel="noopener noreferrer">Code source</a></div>
     </article>
   </template>
 </body>

@@ -6,7 +6,13 @@
     "category": "Organisation",
     "description": "Retrouver son année en un coup d’œil et suivre ses activités, son sport et ses habitudes au fil des jours.",
     "url": "https://vchaillo.github.io/year-tracker/",
-    "repository": "https://github.com/vchaillo/year-tracker"
+    "repository": "https://github.com/vchaillo/year-tracker",
+    "summary": "Un calendrier annuel pour suivre tes activités jour après jour. Personnalise les activités, leurs couleurs et leurs catégories, réorganise-les et utilise les filtres pour retrouver rapidement les moments qui t’intéressent.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ]
   },
   {
     "id": "classroom-map",
@@ -15,7 +21,13 @@
     "category": "Éducation",
     "description": "Préparer un plan de classe, placer les élèves et passer d’une classe de lycée à une autre.",
     "url": "https://vchaillo.github.io/classroom-map/",
-    "repository": "https://github.com/vchaillo/classroom-map"
+    "repository": "https://github.com/vchaillo/classroom-map",
+    "summary": "Un outil pour préparer les plans de classe au lycée. Gère plusieurs classes, renomme-les directement, organise les élèves et les places, et adapte la disposition de la salle pour chaque groupe.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ]
   },
   {
     "id": "mimes",
@@ -24,7 +36,16 @@
     "category": "Jeux",
     "description": "Faire deviner des expressions en les mimant. Jouer en mode libre ou lancer une partie avec plusieurs joueurs.",
     "url": "https://vchaillo.github.io/mimes/",
-    "repository": "https://github.com/vchaillo/mimes"
+    "repository": "https://github.com/vchaillo/mimes",
+    "summary": "Un jeu de mime autour des expressions françaises. Pioche une expression en mode libre ou lance une partie avec plusieurs joueurs, un objectif de points et un chronomètre.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Animate.css",
+      "Font Awesome"
+    ],
+    "screenshot": "https://raw.githubusercontent.com/vchaillo/vchaillo.github.io/main/public/projects/mimes.png"
   },
   {
     "id": "life-calendar",
@@ -34,7 +55,13 @@
     "status": "Prototype",
     "description": "Visualiser une vie sous forme de semaines, pour prendre du recul sur le temps et les grandes périodes.",
     "url": "https://vchaillo.github.io/life-calendar/",
-    "repository": "https://github.com/vchaillo/life-calendar"
+    "repository": "https://github.com/vchaillo/life-calendar",
+    "summary": "Une représentation de la vie semaine par semaine : chaque ligne correspond à une année. Colore les semaines pour identifier les grandes périodes, sélectionne une période en faisant glisser la souris et annule le dernier geste si nécessaire.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ]
   },
   {
     "id": "timelines",
@@ -44,7 +71,16 @@
     "status": "Prototype",
     "description": "Explorer des événements sur une frise chronologique et les afficher selon leurs étiquettes.",
     "url": "https://vchaillo.github.io/timelines/",
-    "repository": "https://github.com/vchaillo/timelines"
+    "repository": "https://github.com/vchaillo/timelines",
+    "summary": "Un prototype de frise chronologique pour explorer des événements et les retrouver à travers leurs étiquettes. Une autre façon de parcourir des repères dans le temps.",
+    "technologies": [
+      "Angular 18",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "RxJS"
+    ],
+    "screenshot": "https://raw.githubusercontent.com/vchaillo/vchaillo.github.io/main/public/projects/timelines.png"
   },
   {
     "id": "portfolio",
@@ -53,6 +89,14 @@
     "category": "Parcours",
     "description": "Mon parcours de développeur, mes expériences et les projets sur lesquels j’ai travaillé.",
     "url": "https://vchaillo.github.io/",
-    "repository": "https://github.com/vchaillo/vchaillo.github.io"
+    "repository": "https://github.com/vchaillo/vchaillo.github.io",
+    "summary": "Mon portfolio de développeur full stack : parcours, expériences et sélection de projets web. Il rassemble mes réalisations et permet de découvrir les outils et sites sur lesquels j’ai travaillé.",
+    "technologies": [
+      "Angular 18",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "RxJS"
+    ]
   }
 ]

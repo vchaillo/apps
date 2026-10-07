@@ -10,7 +10,8 @@ const manager = document.querySelector("#manage-categories");
 const rows = document.querySelector("#category-rows");
 const message = document.querySelector("#category-message");
 const newCategory = document.querySelector("#new-category-name");
-const storageKey = "apps-category-overrides-v1";
+const storageKey = "github-apps-category-overrides-v2";
+const legacyStorageKey = "apps-category-overrides-v1";
 let projects = [];
 let overrides = {};
 let activeCategory = null;
@@ -27,21 +28,25 @@ function validateProject(project) {
 }
 
 function categoryOf(project) {
-  return overrides[project.id] || project.category;
+  return overrides[project.id] || project.categories || [project.category];
 }
 
 function readOverrides() {
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+    const saved = JSON.parse(localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey) || "{}");
     if (!saved || typeof saved !== "object" || Array.isArray(saved)) return {};
-    return Object.fromEntries(projects.filter(project => typeof saved[project.id] === "string" && saved[project.id].trim() && saved[project.id].length <= 60).map(project => [project.id, saved[project.id].trim()]));
+    return Object.fromEntries(projects.flatMap(project => {
+      const value = saved[project.id];
+      const categories = [...new Set((Array.isArray(value) ? value : [value]).filter(item => typeof item === "string" && item.trim() && item.length <= 60).map(item => item.trim()))];
+      return categories.length ? [[project.id, categories]] : [];
+    }));
   } catch {
     return {};
   }
 }
 
 function render() {
-  const categories = [...new Set(projects.map(categoryOf))];
+  const categories = [...new Set(projects.flatMap(categoryOf))];
   if (activeCategory && !categories.includes(activeCategory)) activeCategory = null;
   tabs.replaceChildren();
   [null, ...categories].forEach((category, index) => {
@@ -63,13 +68,16 @@ function render() {
     });
     tabs.append(button);
   });
-  const visible = projects.filter(project => !activeCategory || categoryOf(project) === activeCategory);
+  const visible = projects.filter(project => !activeCategory || categoryOf(project).includes(activeCategory));
   grid.replaceChildren(...visible.map(project => {
     const card = template.content.cloneNode(true);
     card.querySelector("article").dataset.featured = String(["year-tracker", "classroom-map"].includes(project.id));
     card.querySelector(".icon").textContent = project.icon || "▦";
-    card.querySelector(".category").textContent = categoryOf(project);
+    card.querySelector(".category").textContent = categoryOf(project).join(" · ");
     card.querySelector("h3").textContent = project.name;
+    const details = card.querySelector(".details-trigger");
+    details.setAttribute("aria-label", `Voir les détails de ${project.name}`);
+    details.addEventListener("click", () => openProject(project));
     card.querySelector(".status").textContent = project.status || "";
     card.querySelector(".description").textContent = project.description;
     const open = card.querySelector(".open");
@@ -107,27 +115,16 @@ function renderRows() {
   rows.replaceChildren(...projects.map(project => {
     const row = document.createElement("div");
     row.className = "category-row";
-    const label = document.createElement("label");
-    label.htmlFor = `category-${project.id}`;
+    const label = document.createElement("h3");
     label.textContent = `${project.icon || "▦"} ${project.name}`;
-    const select = document.createElement("select");
-    select.id = label.htmlFor;
-    for (const category of draftCategories) {
-      const option = document.createElement("option");
-      option.value = category;
-      option.textContent = category;
-      select.append(option);
-    }
-    select.value = draft[project.id];
-    select.addEventListener("change", () => { draft[project.id] = select.value; });
-    row.append(label, select);
+    row.append(label, categoryChoices(draftCategories, draft[project.id], value => { draft[project.id] = value; }));
     return row;
   }));
 }
 
 manager.addEventListener("click", () => {
-  draft = Object.fromEntries(projects.map(project => [project.id, categoryOf(project)]));
-  draftCategories = [...new Set([...projects.map(categoryOf), ...projects.map(project => project.category)])];
+  draft = Object.fromEntries(projects.map(project => [project.id, [...categoryOf(project)]]));
+  draftCategories = [...new Set([...projects.flatMap(categoryOf), ...projects.map(project => project.category)])];
   message.textContent = "";
   newCategory.value = "";
   renderRows();
@@ -157,7 +154,8 @@ newCategory.addEventListener("keydown", event => {
 });
 document.querySelector("#category-form").addEventListener("submit", event => {
   event.preventDefault();
-  const next = Object.fromEntries(projects.filter(project => draft[project.id] !== project.category).map(project => [project.id, draft[project.id]]));
+  if (projects.some(project => !draft[project.id].length)) { message.textContent = "Choisis au moins une catégorie pour chaque application."; return; }
+  const next = draft;
   try {
     localStorage.setItem(storageKey, JSON.stringify(next));
   } catch {
@@ -202,3 +200,98 @@ async function loadProjects() {
 
 document.querySelector("#retry").addEventListener("click", loadProjects);
 loadProjects();
+
+const projectDialog = document.querySelector("#project-dialog");
+const projectChoices = document.querySelector("#project-categories");
+const projectMessage = document.querySelector("#project-message");
+let selectedProject;
+let selectedCategories = [];
+let availableCategories = [];
+let returnFocus;
+
+function categoryChoices(categories, selected, onChange) {
+  const group = document.createElement("div");
+  group.className = "category-choices";
+  for (const category of categories) {
+    const label = document.createElement("label");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = selected.includes(category);
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) selected.push(category);
+      else selected.splice(selected.indexOf(category), 1);
+      onChange([...selected]);
+    });
+    const text = document.createElement("span");
+    text.textContent = category;
+    label.append(checkbox, text);
+    group.append(label);
+  }
+  return group;
+}
+
+function renderProjectChoices() {
+  projectChoices.replaceChildren(categoryChoices(availableCategories, selectedCategories, value => { selectedCategories = value; }));
+}
+
+function openProject(project) {
+  returnFocus = document.activeElement;
+  selectedProject = project;
+  selectedCategories = [...categoryOf(project)];
+  availableCategories = [...new Set([...projects.flatMap(categoryOf), ...projects.map(item => item.category)])];
+  document.querySelector("#project-title").textContent = project.name;
+  document.querySelector("#project-icon").textContent = project.icon || "▦";
+  document.querySelector("#project-summary").textContent = project.summary || project.description;
+  const technologies = document.querySelector("#project-technologies");
+  technologies.replaceChildren(...(project.technologies || []).map(technology => {
+    const tag = document.createElement("li"); tag.textContent = technology; return tag;
+  }));
+  const screenshot = document.querySelector("#project-screenshot");
+  screenshot.hidden = !project.screenshot;
+  screenshot.removeAttribute("src");
+  if (project.screenshot) { screenshot.src = project.screenshot; screenshot.alt = `Aperçu de ${project.name}`; }
+  screenshot.onerror = () => { screenshot.hidden = true; };
+  document.querySelector("#project-open").href = project.url;
+  document.querySelector("#project-source").href = project.repository;
+  projectMessage.textContent = "";
+  document.querySelector("#project-new-category").value = "";
+  renderProjectChoices();
+  projectDialog.showModal();
+}
+
+function addProjectCategory() {
+  const input = document.querySelector("#project-new-category");
+  const name = input.value.trim();
+  if (!name) { projectMessage.textContent = "Saisis un nom de catégorie."; input.focus(); return; }
+  const existing = availableCategories.find(item => item.toLocaleLowerCase("fr") === name.toLocaleLowerCase("fr"));
+  const category = existing || name;
+  if (!existing) availableCategories.push(category);
+  if (!selectedCategories.includes(category)) selectedCategories.push(category);
+  input.value = "";
+  projectMessage.textContent = "";
+  renderProjectChoices();
+}
+document.querySelector("#project-add-category").addEventListener("click", addProjectCategory);
+document.querySelector("#project-new-category").addEventListener("keydown", event => {
+  if (event.key === "Enter") { event.preventDefault(); addProjectCategory(); }
+});
+document.querySelector("#project-form").addEventListener("submit", event => {
+  event.preventDefault();
+  if (!selectedCategories.length) { projectMessage.textContent = "Choisis au moins une catégorie."; return; }
+  const next = {...overrides, [selectedProject.id]: [...selectedCategories]};
+  try { localStorage.setItem(storageKey, JSON.stringify(next)); }
+  catch { projectMessage.textContent = "Impossible d’enregistrer les catégories dans ce navigateur."; return; }
+  overrides = next;
+  render();
+  projectDialog.close();
+});
+for (const id of ["project-close", "project-cancel"]) document.querySelector(`#${id}`).addEventListener("click", () => projectDialog.close());
+projectDialog.addEventListener("click", event => {
+  if (event.target !== projectDialog) return;
+  const bounds = projectDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) projectDialog.close();
+});
+projectDialog.addEventListener("close", () => {
+  const trigger = [...grid.querySelectorAll(".details-trigger")].find(button => button.getAttribute("aria-label") === `Voir les détails de ${selectedProject.name}`);
+  (trigger || (returnFocus?.isConnected ? returnFocus : document.querySelector('[aria-selected="true"]')))?.focus();
+});
