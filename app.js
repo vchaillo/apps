@@ -246,12 +246,6 @@ function openProject(project) {
   technologies.replaceChildren(...(project.technologies || []).map(technology => {
     const tag = document.createElement("li"); tag.textContent = technology; return tag;
   }));
-  const screenshot = document.querySelector("#project-screenshot");
-  screenshot.hidden = !project.screenshot;
-  document.querySelector("#screenshot-trigger").hidden = !project.screenshot;
-  screenshot.removeAttribute("src");
-  if (project.screenshot) { screenshot.src = project.screenshot; screenshot.alt = `Aperçu de ${project.name}`; }
-  screenshot.onerror = () => { screenshot.hidden = true; document.querySelector("#screenshot-trigger").hidden = true; };
   document.querySelector("#project-open").href = project.url;
   document.querySelector("#project-source").href = project.repository;
   projectMessage.textContent = "";
@@ -297,21 +291,3 @@ projectDialog.addEventListener("close", () => {
   (trigger || (returnFocus?.isConnected ? returnFocus : document.querySelector('[aria-selected="true"]')))?.focus();
 });
 
-// Keep the project dialog open beneath the image viewer.
-const screenshotDialog = document.querySelector("#screenshot-dialog");
-const screenshotTrigger = document.querySelector("#screenshot-trigger");
-screenshotTrigger.addEventListener("click", () => {
-  const preview = document.querySelector("#project-screenshot");
-  const full = document.querySelector("#screenshot-full");
-  full.src = preview.src;
-  full.alt = preview.alt;
-  document.querySelector("#screenshot-title").textContent = selectedProject.name;
-  screenshotDialog.showModal();
-});
-document.querySelector("#screenshot-close").addEventListener("click", () => screenshotDialog.close());
-screenshotDialog.addEventListener("close", () => screenshotTrigger.focus());
-screenshotDialog.addEventListener("click", event => {
-  if (event.target !== screenshotDialog) return;
-  const bounds = screenshotDialog.getBoundingClientRect();
-  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) screenshotDialog.close();
-});
