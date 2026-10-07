@@ -12,7 +12,7 @@ Open http://localhost:8000. Use a local server: fetching `projects.json` from a 
 
 ## Catalog
 
-Edit `projects.json` to add, reorder, update or remove projects. Array order determines display order. Required fields: `id`, `name`, `description`, `category`, `url`, `repository`. Optional fields: `icon`, `status`, `summary`, `technologies` (string array), `screenshot` (HTTPS image URL), `categories` (string array). IDs must be unique and URLs must use HTTPS.
+Edit `projects.json` to add, reorder, update or remove projects. Array order determines display order. Required fields: `id`, `name`, `description`, `category`, `url`, `repository`. Optional fields: `icon`, `status`, `summary`, `technologies` (string array), `screenshot` (HTTPS image URL or relative asset path), `categories` (string array). IDs must be unique and URLs must use HTTPS.
 
 ```json
 {
@@ -33,7 +33,7 @@ node --check app.js
 node scripts/validate-catalog.mjs
 ```
 
-The catalog uses textContent rather than injecting HTML. Application buttons and header links open in a new tab with `noopener noreferrer`. Category tabs filter cards. Project tiles open an accessible detail dialog with a summary, technology list and optional screenshot. Both the project dialog and category manager support multiple categories and reassignment and custom categories; saved overrides persist in localStorage under `github-apps-category-overrides-v2` (migrated from `apps-category-overrides-v1`), per browser and device. Cancel and Escape discard the draft. Unassigned custom categories are not persisted. Changing `projects.json` updates defaults for all visitors; browser overrides take precedence. The directory does not read or modify data stored by the other applications.
+The catalog uses textContent rather than injecting HTML. Application buttons and header links open in a new tab with `noopener noreferrer`. Category tabs filter cards. Project tiles open an accessible detail dialog with a summary, technology list and optional screenshot. Previews are optimized JPEGs stored in `assets/screenshots/` and included in the Pages deployment. Both the project dialog and category manager support multiple categories and reassignment and custom categories; saved overrides persist in localStorage under `github-apps-category-overrides-v2` (migrated from `apps-category-overrides-v1`), per browser and device. Cancel and Escape discard the draft. Unassigned custom categories are not persisted. Changing `projects.json` updates defaults for all visitors; browser overrides take precedence. The directory does not read or modify data stored by the other applications.
 
 ## Deployment
 

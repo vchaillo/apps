@@ -12,7 +12,8 @@
       "HTML",
       "CSS",
       "JavaScript"
-    ]
+    ],
+    "screenshot": "./assets/screenshots/year-tracker.jpg"
   },
   {
     "id": "classroom-map",
@@ -27,7 +28,8 @@
       "HTML",
       "CSS",
       "JavaScript"
-    ]
+    ],
+    "screenshot": "./assets/screenshots/classroom-map.jpg"
   },
   {
     "id": "mimes",
@@ -45,7 +47,7 @@
       "Animate.css",
       "Font Awesome"
     ],
-    "screenshot": "https://raw.githubusercontent.com/vchaillo/vchaillo.github.io/main/public/projects/mimes.png"
+    "screenshot": "./assets/screenshots/mimes.jpg"
   },
   {
     "id": "life-calendar",
@@ -61,7 +63,8 @@
       "HTML",
       "CSS",
       "JavaScript"
-    ]
+    ],
+    "screenshot": "./assets/screenshots/life-calendar.jpg"
   },
   {
     "id": "timelines",
@@ -80,7 +83,7 @@
       "CSS",
       "RxJS"
     ],
-    "screenshot": "https://raw.githubusercontent.com/vchaillo/vchaillo.github.io/main/public/projects/timelines.png"
+    "screenshot": "./assets/screenshots/timelines.jpg"
   },
   {
     "id": "portfolio",
@@ -97,6 +100,7 @@
       "HTML",
       "CSS",
       "RxJS"
-    ]
+    ],
+    "screenshot": "./assets/screenshots/portfolio.jpg"
   }
 ]
