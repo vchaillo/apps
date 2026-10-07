@@ -11,5 +11,7 @@ main{padding-bottom:48px}.intro{padding-bottom:32px}h1{margin-bottom:0}.catalog-
 
 /* Compact previews and the shared accent for project technologies. */
 .project-screenshot{width:min(280px,100%);height:auto;max-height:180px;object-fit:contain;margin:20px 0;border-radius:10px}
-.technology-list li{background:var(--accent);border-color:var(--accent);color:#141b05;font-weight:650}
+.technology-list li{background:transparent;border-color:var(--accent);color:var(--accent);font-weight:650}
 .source{display:inline-flex;align-items:center;gap:8px}.terminal-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:24px;border-radius:6px;background:#0d1117;color:var(--accent);flex:none}.terminal-icon svg{width:22px;height:22px}.project-links .source{text-decoration:none}.project-links .source:hover{color:var(--accent)}
+
+.screenshot-trigger{display:block;padding:0;border:0;background:transparent;cursor:zoom-in;margin:20px 0;border-radius:10px;max-width:100%}.screenshot-trigger .project-screenshot{margin:0}.screenshot-trigger:hover .project-screenshot{border-color:var(--accent)}.project-links{padding-top:0;margin:20px 0;flex-wrap:wrap}#screenshot-dialog{width:min(1200px,calc(100% - 32px));padding:24px}#screenshot-dialog::backdrop{background:#05080ce6}#screenshot-full{display:block;max-width:100%;width:auto;max-height:calc(100dvh - 150px);object-fit:contain;margin:20px auto 0}#screenshot-dialog .modal-heading h2{font-size:1.2rem}

@@ -42,15 +42,16 @@
     <form id="project-form">
       <div class="modal-heading"><div class="project-heading"><span id="project-icon" class="icon" aria-hidden="true"></span><h2 id="project-title"></h2></div><button id="project-close" class="close" type="button" aria-label="Fermer">×</button></div>
       <p id="project-summary"></p>
-      <img id="project-screenshot" class="project-screenshot" hidden alt="">
+      <div class="project-links"><a id="project-open" class="open" target="_blank" rel="noopener noreferrer">Ouvrir l’application</a><a id="project-source" class="source" target="_blank" rel="noopener noreferrer"><span class="terminal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="m7 9 3 3-3 3m6 0h4"/></svg></span><span>Voir le code source</span></a></div>
+      <button id="screenshot-trigger" class="screenshot-trigger" type="button" aria-label="Agrandir la capture" aria-haspopup="dialog" hidden><img id="project-screenshot" class="project-screenshot" hidden alt=""></button>
       <section class="detail-section"><h3>Technologies</h3><ul id="project-technologies" class="technology-list"></ul></section>
       <fieldset class="detail-section"><legend>Catégories</legend><div id="project-categories"></div></fieldset>
       <div class="new-category"><label for="project-new-category">Nouvelle catégorie</label><div><input id="project-new-category" maxlength="60" placeholder="Nom de la catégorie"><button id="project-add-category" type="button">Ajouter</button></div></div>
       <p id="project-message" role="status" aria-live="polite"></p>
-      <div class="project-links"><a id="project-open" class="open" target="_blank" rel="noopener noreferrer">Ouvrir l’application</a><a id="project-source" class="source" target="_blank" rel="noopener noreferrer"><span class="terminal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="m7 9 3 3-3 3m6 0h4"/></svg></span><span>Voir le code source</span></a></div>
       <div class="modal-actions"><button id="project-cancel" type="button">Annuler</button><button class="save" type="submit">Enregistrer les catégories</button></div>
     </form>
   </dialog>
+  <dialog id="screenshot-dialog" aria-labelledby="screenshot-title"><div class="modal-heading"><h2 id="screenshot-title">Aperçu du projet</h2><button id="screenshot-close" class="close" type="button" aria-label="Fermer la capture">×</button></div><img id="screenshot-full" alt=""></dialog>
   <template id="project-template">
     <article class="card">
       <button class="details-trigger" type="button" aria-haspopup="dialog"></button>
