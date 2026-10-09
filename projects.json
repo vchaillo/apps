@@ -102,5 +102,22 @@
       "RxJS"
     ],
     "screenshot": "./assets/screenshots/portfolio.jpg"
+  },
+  {
+    "id": "datas-citoyennes",
+    "name": "Datas Citoyennes",
+    "icon": "📊",
+    "category": "Visualisation",
+    "status": "Prototype",
+    "description": "Explorer les données publiques françaises à travers des graphiques interactifs et des sources officielles.",
+    "url": "https://vchaillo.github.io/datas-citoyennes/",
+    "repository": "https://github.com/vchaillo/datas-citoyennes",
+    "summary": "Un explorateur de données publiques organisé par grandes thématiques. Le premier dossier présente le budget de l’État voté pour 2025 : recettes, dépenses par mission, équilibre et sources consultables pour chaque poste.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "SVG"
+    ]
   }
 ]
